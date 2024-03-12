@@ -6,6 +6,7 @@ import vuetify from 'vite-plugin-vuetify';
 export default defineConfig({
     server: {
         hmr: { host: 'localhost' },
+        host: 'localhost',
     },
     plugins: [
         laravel({
