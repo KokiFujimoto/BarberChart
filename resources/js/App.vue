@@ -1,6 +1,20 @@
 <template>
-    <div>
-        <h1>Hello world !!!</h1>
-        <v-btn color="primary">Button</v-btn>
-    </div>
+    <v-app>
+        <HeaderComponent />
+        <div style="height: 64px;"></div>
+        <router-view />
+        <FooterComponent />
+    </v-app>
 </template>
+
+<script>
+import HeaderComponent from './components/Header.vue';
+import FooterComponent from './components/Footer.vue';
+
+export default {
+    components: {
+        HeaderComponent,
+        FooterComponent,
+    }
+}
+</script>
