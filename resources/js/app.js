@@ -3,12 +3,13 @@ import app from "./App.vue";
 import vuetify from "./vuetify";
 import router from './router.js';
 import '@mdi/font/css/materialdesignicons.css';
-import { formatDateSlash, formatDateHyphen, occupations, ages } from './common.js';
+import { formatDate, formatDateSlash, formatDateHyphen, occupations, ages } from './common.js';
 
 // Vueアプリケーションを作成
 const vueApp = createApp(app);
 
 // 共通関数をVueのプロトタイプに追加
+vueApp.config.globalProperties.$formatDate = formatDate;
 vueApp.config.globalProperties.$formatDateSlash = formatDateSlash;
 vueApp.config.globalProperties.$formatDateHyphen = formatDateHyphen;
 vueApp.config.globalProperties.$occupations = occupations;

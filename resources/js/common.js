@@ -1,19 +1,13 @@
 export const formatDateSlash = function(date) {
-    // 年、月、日を取得
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月は0-indexedなので+1する
-    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.slice(0, 4);
+    const month = date.slice(4, 6);
+    const day = date.slice(6, 8);
 
     // yyyy/mm/dd形式の文字列を返す
     return `${year}/${month}/${day}`;
 };
 
 export const formatDateHyphen =  function(date) {
-    // 入力された日付文字列が yyyymmdd 形式であることを確認する
-    if (date.length !== 8) {
-        throw new Error('Invalid input date format. Expected format: yyyymmdd');
-    }
-
     // 年、月、日の部分を取得して '-' を挿入する
     const year = date.slice(0, 4);
     const month = date.slice(4, 6);
@@ -21,6 +15,14 @@ export const formatDateHyphen =  function(date) {
 
     // yyyy-mm-dd 形式の文字列を返す
     return `${year}-${month}-${day}`;
+}
+
+export const formatDate =  function(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
+    return `${year}${month}${day}`;
 }
 
 export const occupations = [

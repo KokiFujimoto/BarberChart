@@ -2,16 +2,16 @@
     <v-app-bar
         app
         dark
-        class="pr-5"
         color="primary"
         style="height: 64px;"
     >
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title class="font-weight-bold">理容ふじもと顧客管理システム</v-toolbar-title>
         <v-spacer />
-        <v-btn to="/">
-            <v-icon>mdi-home</v-icon>
-        </v-btn>
+        <v-btn
+            icon="mdi-home"
+            to="/"
+        />
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" app floating class="">
         <v-list class="pa-0">
