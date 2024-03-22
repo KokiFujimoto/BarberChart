@@ -26,7 +26,8 @@
         <CustomerDetail
             :dialog="detailDialog"
             :item="itemDetail"
-            @update:dialog="updateDialog"
+            @updateDialog="updateDialog"
+            @updateItem="updateItem"
         />
     </v-container>
 </template>
@@ -154,6 +155,14 @@ export default {
         addCustomer() {
             this.itemDetail = this.newCustomer;
             this.detailDialog = true;
+        },
+        updateItem(value) {
+            const index = this.items.findIndex(item => item.id === value.id);
+            if (index !== -1) {
+                this.items[index] = value;
+            }
+
+            this.detailDialog = false;
         },
     },
 }

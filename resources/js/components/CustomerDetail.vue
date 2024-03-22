@@ -81,7 +81,7 @@
                     </v-col>
                 </v-row>
                 <div v-if="isEditable" class="px-3">
-                    <v-btn color="primary">保存する</v-btn>
+                    <v-btn @click="save" color="primary">保存する</v-btn>
                     <v-btn @click="close">キャンセル</v-btn>
                 </div>
             </div>
@@ -112,6 +112,7 @@ export default {
             occupations: this.$occupations,
             tmpDialog: false,
             isEditable: false,
+            tmpItem: {},
         };
     },
     watch: {
@@ -119,8 +120,11 @@ export default {
             this.tmpDialog = newValue;
         },
         tmpDialog(newValue) {
-            this.$emit('update:dialog', newValue);
-        }
+            this.$emit('updateDialog', newValue);
+        },
+        item(newValue) {
+            this.tmpItem = { ...newValue };
+        },
     },
     created() {
         this.tmpDialog = this.dialog;
@@ -128,57 +132,60 @@ export default {
     computed: {
         nameComputed: {
             get() {
-                return this.item.name;
+                return this.tmpItem.name;
             },
             set(value) {
-                
+                console.log(this.item)
+                console.log(value)
+                this.tmpItem.name = value;
+                console.log(this.item)
             }
         },
         kanaComputed: {
             get() {
-                return this.item.kana;
+                return this.tmpItem.kana;
             },
             set(value) {
-                
+                this.tmpItem.kana = value;
             }
         },
         birthdayComputed: {
             get() {
-                return this.$formatDateSlash(String(this.item.age));
+                return this.$formatDateSlash(String(this.tmpItem.age));
             },
             set(value) {
             }
         },
         occupationComputed: {
             get() {
-                return this.item.occupation;
+                return this.tmpItem.occupation;
             },
             set(value) {
-                
+                this.tmpItem.occupation = value;
             }
         },
         addressComputed: {
             get() {
-                return this.item.address;
+                return this.tmpItem.address;
             },
             set(value) {
-                
+                this.tmpItem.address = value;
             }
         },
         telComputed: {
             get() {
-                return this.item.tel;
+                return this.tmpItem.tel;
             },
             set(value) {
-                
+                this.tmpItem.tel = value;
             }
         },
         memoComputed: {
             get() {
-                return this.item.memo;
+                return this.tmpItem.memo;
             },
             set(value) {
-                
+                this.tmpItem.memo = value;
             }
         },
     },
@@ -187,7 +194,7 @@ export default {
             this.isEditable = !this.isEditable;
         },
         updateDate(item) {
-            this.item.age = Number(item);
+            this.tmpItem.age = Number(item);
         },
         dateDialogHandler() {
             if (!this.isEditable) {
@@ -198,7 +205,10 @@ export default {
         close() {
             this.isEditable = false;
             this.tmpDialog = false;
-        }
+        },
+        save() {
+            this.$emit('updateItem', this.tmpItem);
+        },
     },
 }
 </script>
