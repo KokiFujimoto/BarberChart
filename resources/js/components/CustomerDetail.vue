@@ -42,7 +42,7 @@
                             :readonly="!isEditable"
                         />
                         <v-dialog v-model="dateDialog">
-                            <DatePicker :date="item.age" @changeDate="dateDialog = !dateDialog" @update:date="updateDate" />
+                            <DatePicker :date="item.birthday" @changeDate="dateDialog = !dateDialog" @updateDate="updateDate" />
                         </v-dialog>
                     </v-col>
                     <v-col cols="12" sm="12" md="6" lg="6" class="pb-0">
@@ -151,7 +151,7 @@ export default {
         },
         birthdayComputed: {
             get() {
-                return this.$formatDateSlash(String(this.tmpItem.age));
+                return this.$formatDateSlash(String(this.tmpItem.birthday));
             },
             set(value) {
             }
@@ -194,7 +194,7 @@ export default {
             this.isEditable = !this.isEditable;
         },
         updateDate(item) {
-            this.tmpItem.age = Number(item);
+            this.tmpItem.birthday = Number(item);
         },
         dateDialogHandler() {
             if (!this.isEditable) {

@@ -28,7 +28,7 @@ export default {
             },
             set (value) {
                 this.tmpDate = this.$formatDate(value);
-                this.$emit('update:date', this.tmpDate);
+                this.$emit('updateDate', this.tmpDate);
                 this.$emit('changeDate');
             }
         }
