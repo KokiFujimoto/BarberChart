@@ -38,52 +38,42 @@
 <script>
 export default {
     props: {
-        name: {
-            type: String,
-            default: '',
-        },
-        occupation: {
-            type: Number,
-            default: 0,
-        },
-        age: {
-            type: Number,
-            default: 0,
+        filter: {
+            type: Object,
+            default: {},
         },
     },
     data() {
         return {
-            tmpName: this.name,
-            tmpOccupation: this.occupation,
-            tmpAge: this.age,
+            tmpFilter: this.filter,
         };
     },
     computed: {
         nameComputed: {
             get() {
-                return this.name;
+                return this.tmpFilter.name;
             },
             set(value) {
-                this.tmpName = value;
-                this.$emit('update:name', this.tmpName);
+                this.tmpFilter.name = value;
+                this.$emit('update:name', this.tmpFilter.name);
             }
         },
         occupationComputed: {
             get() {
-                return this.occupation;
+                return this.tmpFilter.occupation;
             },
             set(value) {
-                this.tmpOccupation = value;
-                this.$emit('update:occupation', this.tmpOccupation);
+                this.tmpFilter.occupation = value;
+                this.$emit('update:occupation', this.tmpFilter.occupation);
             }
         },
         ageComputed: {
             get() {
-                return this.age;
+                return this.tmpFilter.age;
             },
             set(value) {
-                this.tmpAge = value;
-                this.$emit('update:age', this.tmpAge);
+                this.tmpFilter.age = value;
+                this.$emit('update:age', this.tmpFilter.age);
             }
         },
     },

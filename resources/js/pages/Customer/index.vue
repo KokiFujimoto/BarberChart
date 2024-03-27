@@ -1,9 +1,7 @@
 <template>
     <v-container>
         <SearchFilter
-            :name="name"
-            :occupation="occupation"
-            :age="age"
+            :filter="filter"
             @search="search"
         />
         <TitleBar title="顧客一覧">
@@ -124,9 +122,11 @@ export default {
                     action: 3,
                 },
             ],
-            name: '',
-            occupation: 0,
-            age: 0,
+            filter: {
+                name: '',
+                occupation: 0,
+                age: 0,
+            },
             detailDialog: false,
             itemDetail: [],
             newCustomer: {
@@ -141,9 +141,14 @@ export default {
             },
         };
     },
+    async created() {
+        await this.search();
+    },
     methods: {
-        search() {
-
+        async search() {
+            // const res = await this.$axios.get('/api/customer/search', this.filter);
+            const res = await this.$axios.get('/search', this.filter);
+            console.log(res)
         },
         dialogHandler(item) {
             this.itemDetail = item;
