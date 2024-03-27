@@ -2,9 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
 
-// Route::prefix("/customer")->group(function() {
-//     Route::get("/search", "CustomerController@search");
-// });
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
 
-Route::post('/customer/search', [CustomerController::class, 'search']);
+Route::post("/customer/search", [CustomerController::class, "search"]);
