@@ -146,9 +146,8 @@ export default {
     },
     methods: {
         async search() {
-            // const res = await this.$axios.get('/api/customer/search', this.filter);
-            const res = await this.$axios.get('/search', this.filter);
-            console.log(res)
+            const res = await this.$axios.post('/api/customer/search', this.filter);
+            console.log(res);
         },
         dialogHandler(item) {
             this.itemDetail = item;
